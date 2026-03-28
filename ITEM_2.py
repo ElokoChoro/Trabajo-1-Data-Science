@@ -68,7 +68,7 @@ def clasificar_rendimiento(promedio):
 for persona in estudiantes:
         prom= promedio_estudiante (persona)
         rendimiento = clasificar_rendimiento(prom)
-        print(f"Estudiante: {persona['nombre']} | promedio_{prom:.2f} | Rendimiento:{rendimiento}")
+        print(f"Estudiante: {persona['nombre']} | promedio_{prom:.2f} |")
         
         
 def generar_reporte(estudiantes):
