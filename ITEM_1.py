@@ -94,6 +94,16 @@ def calcular_desviacion_estandar(datos):
     
     return aproximacion
 
+# 1D Conversión de Temperaturas
+ def celsius_a_fahrenheit(grados_c):
+
+    lista_fahrenheit = []
+    for celsius in grados_c:
+        fahrenheit = celsius * 9 / 5 + 32
+        lista_fahrenheit.append(fahrenheit)
+    return lista_fahrenheit
+
+
 # 1E REPORTE ESTADISTICO INTEGRADO
 ciudades = [
     {"ciudad": "Santiago", "temperaturas": [30.2, 28.5, 25.1, 18.3, 12.7, 9.5, 8.8, 10.1, 14.6, 19.3, 24.8, 28.9]},
