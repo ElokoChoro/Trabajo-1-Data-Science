@@ -20,7 +20,7 @@ estudiantes = [
     {"nombre": "Vicente", "notas": [3.7, 4.0, 4.3]},
     {"nombre": "Paula", "notas": [6.3, 6.4, 6.5]}
 ]
-
+# 2A Reporte de Rendimiento 
 def calcular_suma(datos): 
         suma = 0
         for numeros in datos: 
