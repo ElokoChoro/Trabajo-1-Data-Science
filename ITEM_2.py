@@ -90,3 +90,5 @@ def generar_reporte(estudiantes):
                 }
                 reporte.append(nuevo_dict)
         return reporte
+
+#2C Ordenamiento del reporte
