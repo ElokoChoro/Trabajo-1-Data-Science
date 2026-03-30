@@ -139,3 +139,22 @@ def buscar_por_rango_promedio (reporte, minimo, maximo):
             estudiantes_rango_proemdio.append(estudiante)
     return estudiantes_rango_proemdio
 
+#2E  analsis de consistencia 
+def analisis_de_Consistencia(reporte):
+      mas_cosistente = reporte [0]
+      mas_inconsistente = reporte [0]
+      for almuno in reporte:
+            if almuno ["rango"] < mas_cosistente["rango"]:
+                  mas_cosistente = almuno
+            if almuno["rango"] > mas_inconsistente["rango"]:
+                  mas_inconsistente =almuno
+      print ("\n"+ "="*40)
+      print (f"{'Estudiante':<15}| {'Rango':<10}| {'Tipo'}")
+      print("-"*40)
+      print(f"{mas_cosistente['nombre']:<15}| {mas_cosistente['rango']:<10} | Más consistente")
+      print(f"{mas_inconsistente['nombre']:<15}| {mas_inconsistente['rango']:<10}| Más inconsistente")
+      return {
+            "Consistente": mas_cosistente,
+            "Inconsistente": mas_inconsistente
+      }
+    #para que salca el analisis de consitencia hay que llamarlo con mi_reporte = generar_reporte(estudiantes) #analisis_de_Consistencia(mi_reporte)
