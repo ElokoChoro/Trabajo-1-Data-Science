@@ -91,4 +91,4 @@ def generar_reporte(estudiantes):
                 reporte.append(nuevo_dict)
         return reporte
 
-#2C Ordenamiento del reporte
+#2C Ordenamiento del reporte ( ya no cuenta, pero si se logra hacer el profe da un punto)
