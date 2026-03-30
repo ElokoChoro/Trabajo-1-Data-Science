@@ -1,3 +1,4 @@
+#3a) 
 # Lista de estudiantes con sus notas, como en el ejercicio
 lista_de_estudiantes = [
     {"nombre": "Ana", "notas": [6.5, 7.0, 5.8]},
@@ -65,3 +66,192 @@ def encontrar_moda(frecuencias):
 notas_en_una_lista = aplanar_notas(lista_de_estudiantes)
 frecuencia_de_notas = contar_frecuencias(notas_en_una_lista)
 la_moda_calculada = encontrar_moda(frecuencia_de_notas)
+
+
+#───────────────────────────────────────────────────────
+#3d) y 3e)
+
+texto = """
+La ciencia de datos es un campo interdisciplinario que utiliza
+métodos científicos y algoritmos para extraer conocimiento de
+los datos. La estadística y la programación son herramientas
+fundamentales para un científico de datos. Los datos pueden
+ser estructurados o no estructurados. El análisis de datos
+permite tomar decisiones basadas en evidencia.
+"""
+
+
+def limpiar_texto(texto):
+    #funcion basica de python transforma mayusculas a minusculas
+    texto = texto.lower()
+    
+    #funcion que reemplaza los saltos de linea por espacios
+    texto = texto.replace("\n", " ")
+    
+    #caracteres qye sacaremos del texto
+    puntuacion = ".,;:!?()[]{}\"'¿¡-_"
+    texto_limpio = ""
+    
+    #recorre cada carácter del texto
+    for caracter in texto:
+        #si el carácter NO está en la puntuación, lo agregamos
+        if caracter not in puntuacion:
+            texto_limpio = texto_limpio + caracter
+    
+    print("Texto limpio:", texto_limpio)
+    return texto_limpio
+
+def frecuencia_palabras(texto_limpio):
+    palabras = []
+    palabra_actual = ""
+    
+    for caracter in texto_limpio:
+        if caracter == " ": #si hay espacio termina la palabra
+            if palabra_actual != "": #distinto de vacio, agregar palabra a la lista
+                palabras = palabras + [palabra_actual]
+                palabra_actual = ""
+        else:
+            #else, agregamos el caracter a la palabra actual
+            palabra_actual = palabra_actual + caracter
+    
+    #oara el loop, evita agregar cadena vacia
+    if palabra_actual != "":
+        palabras = palabras + [palabra_actual]
+
+    #diccionario de frecuencia
+    frecuencias = {}
+    
+    for palabra in palabras:
+        if palabra in frecuencias:
+            frecuencias[palabra] += 1 #si la palabra ya existe en el diccionario suma 1
+        else:
+            frecuencias[palabra] = 1 #primera vez inicializa en 1
+    
+    print("\nFrecuencia de palabras:", frecuencias)
+    return frecuencias
+
+
+def top_n_palabras(frecuencias, n=10):
+    #convertir el diccionario a una lista de tuplas ej:(palabra, cantidad)(hola, 1)
+    pares = []
+    for palabra, cantidad in frecuencias.items():
+        pares = pares + [(palabra, cantidad)]
+
+    #bubble sort para ordenar por frecuencia (de mayor a menor)
+    largo = 0
+    for _ in pares:
+        largo += 1
+
+    #compara elementos y intercambiar si es necesario
+    for i in range(largo - 1):
+        for j in range(largo - 1 - i):
+            #si el elemento actual es menor que el siguiente, intercambia los elementos
+            if pares[j][1] < pares[j + 1][1]:
+                temp = pares[j]
+                pares[j] = pares[j + 1]
+                pares[j + 1] = temp
+
+    #toma solo los primeros n elementos
+    top = []
+    contador = 0
+    for par in pares:
+        if contador < n:
+            top = top + [par]
+            contador += 1
+
+    print(f"\nTop {n} palabras más frecuentes:")
+    for palabra, cantidad in top:
+        print(f"  '{palabra}': {cantidad}")
+    return top
+
+
+def diversidad_lexica(texto_limpio):
+    #Igual que en frecuencia_palabras, separamos el texto en una lista de 
+    #palabras recorriendo caracter por caracter esto nos da "todas" 
+    #las palabras incluyendo repetidas, por ejemplo:
+    #["la", "ciencia", "de", "datos", "la", "de", "datos", "datos"]
+    palabras = []
+    palabra_actual = ""
+    for caracter in texto_limpio:
+        if caracter == " ":
+            if palabra_actual != "":
+                palabras = palabras + [palabra_actual]
+                palabra_actual = ""
+        else:
+            palabra_actual = palabra_actual + caracter
+    if palabra_actual != "":
+        palabras = palabras + [palabra_actual]
+
+    #crea una lista de palabras únicas (sin repetidas)
+    unicas = []
+    for palabra in palabras:
+        encontrada = False
+        #revisa si la palabra ya está en la lista de únicas
+        for u in unicas:
+            if u == palabra:
+                encontrada = True
+        # Si no se encuentra, la agregamos a la lista unica
+        if not encontrada:
+            unicas = unicas + [palabra]
+
+    # Contar el total de palabras (incluyendo repetidas)
+    total = 0
+    for _ in palabras:
+        total += 1
+
+    # Contar el total de palabras únicas
+    total_unicas = 0
+    for _ in unicas:
+        total_unicas += 1
+
+    #calculo del ratio para medir la diversidad léxica
+    #entre más alto el ratio, más diversa es la selección de palabras
+    ratio = total_unicas / total
+    print(f"\nDiversidad léxica: {total_unicas} únicas / {total} total = {ratio:.2f}")
+    return ratio
+
+
+
+def calcular_bigramas(texto_limpio):
+    palabras = []
+    palabra_actual = ""
+    for caracter in texto_limpio:
+        if caracter == " ":
+            if palabra_actual != "":
+                palabras = palabras + [palabra_actual]
+                palabra_actual = ""
+        else:
+            palabra_actual = palabra_actual + caracter
+    if palabra_actual != "":
+        palabras = palabras + [palabra_actual]
+
+    #diccionario para guardar los bigramas y su frecuencia
+    bigramas = {}
+    
+    i = 0
+    while i < len(palabras) - 1: #terminar en i-1(no hay mas palabras para formar el par)
+        #crea el bigrama uniendo dos palabras con espacio
+        bigrama = palabras[i] + " " + palabras[i + 1]
+        
+        #si ya existe suma 1 al contador
+        if bigrama in bigramas:
+            bigramas[bigrama] += 1
+        #else inicializa el contador en 1
+        else:
+            bigramas[bigrama] = 1
+        
+        #avanza a la siguiente palabra
+        i += 1
+
+    print("\nBigramas (pares de palabras):")
+    for bigrama, cantidad in bigramas.items():
+        print(f"  '{bigrama}': {cantidad}")
+    return bigramas
+
+#EJECUCCION
+
+texto_limpio = limpiar_texto(texto)
+frecuencias = frecuencia_palabras(texto_limpio)
+top = top_n_palabras(frecuencias, n=10)
+diversidad = diversidad_lexica(texto_limpio)
+bigramas = calcular_bigramas(texto_limpio)
