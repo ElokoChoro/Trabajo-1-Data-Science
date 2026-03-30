@@ -90,5 +90,52 @@ def generar_reporte(estudiantes):
                 }
                 reporte.append(nuevo_dict)
         return reporte
+# 2B CONTEO Y FILTRADO
 
+def contar_por_estado(reporte):
+    conteo = {}
+    for estudiante in reporte:
+        estado = estudiante["estado"]
+        if estado in conteo:
+            conteo[estado] += 1
+        else:
+            conteo[estado] = 1
+    return conteo 
+
+
+def filtrar_por_estado(reporte, estado_buscado):
+    estudiantes_filtrados = []
+    for estudiante in reporte:
+        if estudiante["estado"] == estado_buscado:
+            estudiantes_filtrados.append(estudiante)
+    return estudiantes_filtrados
 #2C Ordenamiento del reporte ( ya no cuenta, pero si se logra hacer el profe da un punto)
+
+
+
+
+
+
+
+#2D BUSQUEDA DE ESTUDIANTES
+
+def buscar_estudiante(reporte):
+    nombre_buscado = input("\nIngresa el nombre del estudiante que deseas buscar: ")
+    
+    # Buscamos en el reporte
+    for alumno in reporte:
+        #.lower es para todo sea minisculas y compare mas facil y no falle
+        if alumno["nombre"].lower() == nombre_buscado.lower(): 
+            return alumno
+        
+    return None
+
+
+def buscar_por_rango_promedio (reporte, minimo, maximo):
+    estudiantes_rango_proemdio = []
+    for estudiante in reporte:
+        promedio =estudiante ['promedio']
+        if promedio >= minimo and promedio<= maximo :
+            estudiantes_rango_proemdio.append(estudiante)
+    return estudiantes_rango_proemdio
+
