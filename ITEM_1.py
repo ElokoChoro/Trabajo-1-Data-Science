@@ -56,6 +56,9 @@ def bubble_sort(datos, descendente=False):
     
     return lista_ordenada
 
+#1B la función hace una copia de la lista original y realiza varias pasadas sobre la lista,
+# en cada pasada va comparando los elementos y si están incorrectos, se intercambian, hasta que una pasada termine sin intercambios y retorna la lista ordenada.
+
 # 1C Mediana y Desviación Estándar
 def calcular_mediana(datos):
     
@@ -70,8 +73,12 @@ def calcular_mediana(datos):
         posicion_der = cantidad // 2
         return (lista_ordenada[posicion_izq] + lista_ordenada[posicion_der]) / 2
 
+#1C al tener datos, ordena la lista usando la función creada anteriormente(bubble sort) y si la cantidad es impar retornara el valor del medio, 
+# caso contrario se promediaran los dos valores centrales por lo cual es de tipo float.
+
 def calcular_desviacion_estandar(datos):
-    
+        
+    maximo_iteraciones=50
     cantidad = calcular_largo(datos)
     if cantidad == 0:
         return 0
@@ -89,10 +96,13 @@ def calcular_desviacion_estandar(datos):
         return 0
     
     aproximacion = varianza / 2 
-    for _ in range(20):  
+    for _ in range(maximo_iteraciones):
         aproximacion = (aproximacion + varianza / aproximacion) / 2
     
     return aproximacion
+        
+#1C Si tiene datos, se calcula el promedio de los valores, luego se recorre cada elemento de la lista y se calcula la diferencia entre cada valor y el promedio dado,
+# ese valor sera la diferencia y se usara para la suma de diferencias al cuadrado, con esa misma suma se calcula la varianza con la cantidad de datos, para terminar calculando la desviacion estandar.
 
 # 1D Conversión de Temperaturas
 def celsius_a_fahrenheit(grados_c):
@@ -101,7 +111,8 @@ def celsius_a_fahrenheit(grados_c):
             fahrenheit = celsius * 9 / 5 + 32
         lista_fahrenheit.append(fahrenheit)
     return lista_fahrenheit
-
+#1D se crea una lista vacía para guardar resultados, luego recorre cada temperatura en Celsius y se aplica la formula de conversión, 
+# ese resultado se agrega a la nueva lista, una vez finalizado el recorrido, se retorna la lista final.
 
 # 1E REPORTE ESTADISTICO INTEGRADO
 while true:
