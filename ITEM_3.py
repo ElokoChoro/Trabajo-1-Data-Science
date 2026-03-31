@@ -68,8 +68,29 @@ frecuencia_de_notas = contar_frecuencias(notas_en_una_lista)
 la_moda_calculada = encontrar_moda(frecuencia_de_notas)
 
 
+def generar_histograma(frecuencias, ancho_max=25):
+    """Imprime histograma horizontal con barras de X."""
+    if not frecuencias:
+        print("No hay datos para graficar.")
+        return
+        
+    max_frecuencia = max(frecuencias.values())
+    
+    print("\n  HISTOGRAMA DE NOTAS ")
+    
+    # Ordenamos un poco las notas para que el gráfico se vea de menor a mayor
+    for categoria, cantidad in sorted(frecuencias.items()):
+        if max_frecuencia > 0:
+            largo_barra = int((cantidad / max_frecuencia) * ancho_max)
+        else:
+            largo_barra = 0
+            
+        barra = "X" * largo_barra
+        #.ljust es un justificador hacia la izquierda
+        print(f"Nota {str(categoria).ljust(5)} | {barra} ({cantidad})")
+
 #───────────────────────────────────────────────────────
-#3d) y 3e)
+#3d)
 
 texto = """
 La ciencia de datos es un campo interdisciplinario que utiliza
@@ -210,7 +231,7 @@ def diversidad_lexica(texto_limpio):
     print(f"\nDiversidad léxica: {total_unicas} únicas / {total} total = {ratio:.2f}")
     return ratio
 
-
+3E)
 
 def calcular_bigramas(texto_limpio):
     palabras = []
