@@ -67,7 +67,7 @@ notas_en_una_lista = aplanar_notas(lista_de_estudiantes)
 frecuencia_de_notas = contar_frecuencias(notas_en_una_lista)
 la_moda_calculada = encontrar_moda(frecuencia_de_notas)
 
-
+3B
 def generar_histograma(frecuencias, ancho_max=25):
     """Imprime histograma horizontal con barras de X."""
     if not frecuencias:
@@ -89,6 +89,38 @@ def generar_histograma(frecuencias, ancho_max=25):
         #.ljust es un justificador hacia la izquierda
         print(f"Nota {str(categoria).ljust(5)} | {barra} ({cantidad})")
 
+3C
+def clasificar_en_tramos(datos, tramos):
+    """
+    tramos = {"1.0-3.9": (1.0, 3.9), "4.0-5.9": (4.0, 5.9), ...}
+    Retorna dict con cantidad por tramo.
+    """
+    
+    # 1. Preparamos nuestro diccionario de resultados
+    # Lo inicializamos con los nombres de los tramos y cantidad 0
+    resultados = {}
+    for nombre_tramo in tramos:
+        resultados[nombre_tramo] = 0
+        
+    # 2. Tomamos cada número de nuestra lista de datos
+    for numero in datos:
+        
+        # 3. Por cada número, revisamos todos los tramos disponibles
+        # .items() nos da el nombre ("1.0-3.9") y los límites (1.0, 3.9)
+        for nombre_tramo, limites in tramos.items():
+            
+            minimo = limites[0] # El primer valor de la tupla, ej: 1.0
+            maximo = limites[1] # El segundo valor de la tupla, ej: 3.9
+            
+            # 4. Preguntamos: ¿El número está dentro de este tramo?
+            if minimo <= numero <= maximo:
+                resultados[nombre_tramo] += 1
+                
+                # Si ya encontramos su tramo, dejamos de buscar en los demás
+                # y pasamos al siguiente número gracias a "break"
+                break 
+                
+    return resultados
 #───────────────────────────────────────────────────────
 #3d)
 
