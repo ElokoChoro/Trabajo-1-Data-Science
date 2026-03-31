@@ -31,8 +31,8 @@ def calcular_maximo(datos):
 
 # 1B Ordenamiento Bubble Sort
 def bubble_sort(datos, descendente=False):
-    lista_ordenada = datos[:]
-    cantidad = len(lista_ordenada)
+    lista_ordenada = datos()
+    cantidad = calcular_largo(lista_ordenada)
     
     for pasada in range(cantidad - 1):
         intercambio_hecho = False
@@ -60,7 +60,7 @@ def bubble_sort(datos, descendente=False):
 def calcular_mediana(datos):
     
     lista_ordenada = bubble_sort(datos)
-    cantidad = len(lista_ordenada)
+    cantidad = calcular_largo(lista_ordenada)
     
     if cantidad % 2 == 1:
         posicion_medio = cantidad // 2
@@ -72,7 +72,7 @@ def calcular_mediana(datos):
 
 def calcular_desviacion_estandar(datos):
     
-    cantidad = len(datos)
+    cantidad = calcular_largo(datos)
     if cantidad == 0:
         return 0
     
@@ -97,8 +97,7 @@ def calcular_desviacion_estandar(datos):
 # 1D Conversión de Temperaturas
 def celsius_a_fahrenheit(grados_c):
         lista_fahrenheit = []
-    for celsius in grados_c:
-        fahrenheit = celsius * 9 / 5 + 32
+    for celsius in grados_c: fahrenheit = celsius * 9 / 5 + 32
         lista_fahrenheit.append(fahrenheit)
     return lista_fahrenheit
 
