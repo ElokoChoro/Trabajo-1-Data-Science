@@ -31,7 +31,7 @@ def calcular_maximo(datos):
 
 # 1B Ordenamiento Bubble Sort
 def bubble_sort(datos, descendente=False):
-    lista_ordenada = datos[:]
+    lista_ordenada = datos.copy()
     cantidad = calcular_largo(lista_ordenada)
     
     for pasada in range(cantidad - 1):
@@ -77,8 +77,8 @@ def calcular_desviacion_estandar(datos):
         return 0
     
     promedio = calcular_promedio(datos)
-    
     suma_cuadrados = 0
+        
     for elemento in datos:
         diferencia = elemento - promedio
         suma_cuadrados = suma_cuadrados + diferencia * diferencia
