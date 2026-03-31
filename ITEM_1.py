@@ -31,7 +31,7 @@ def calcular_maximo(datos):
 
 # 1B Ordenamiento Bubble Sort
 def bubble_sort(datos, descendente=False):
-    lista_ordenada = datos()
+    lista_ordenada = datos[:]
     cantidad = calcular_largo(lista_ordenada)
     
     for pasada in range(cantidad - 1):
