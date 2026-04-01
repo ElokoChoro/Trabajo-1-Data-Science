@@ -188,7 +188,7 @@ def main():
     
     while True:
         mostrar_menu()
-        opcion = input("Selecciona una opción (1-8): ").strip()
+        opcion = input("Selecciona una opcion (1-8): ").strip()
         
         if opcion == "1":
             reporte = generar_reporte(estudiantes)
@@ -248,7 +248,7 @@ def main():
             print("\n ¡Hasta luego!")
             break
         else:
-            print("\n opción inválida.")
+            print("\n opcion invalida.")
         
         input("\n[Enter] para continuar...")
 
