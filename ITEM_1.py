@@ -115,7 +115,7 @@ def celsius_a_fahrenheit(grados_c):
 # ese resultado se agrega a la nueva lista, una vez finalizado el recorrido, se retorna la lista final.
 
 # 1E REPORTE ESTADISTICO INTEGRADO
-while true:
+    while true:
         print("------------------------------------")
         print("    MENÚ DE ANÁLISIS CLIMÁTICO")
         print("------------------------------------")
@@ -149,12 +149,11 @@ while true:
                     print(f"El promedio de las temperaturas es: {promedio:.2f}")
                     print(f"La temepraturas minima de {nombre} es: {minimo}")
                     print(f"La temperatura masximi de {nombre} es : {maximo}")
-elif opcion == "2":
-        print("Se cerro el programa adios")
+        elif opcion == "2":
+         print("Se cerro el programa adios")
         break
-else:
+    else:
         print("por favor ingre una de las opciones dadas 1 o 2")
-
     
 
 
