@@ -106,9 +106,9 @@ def calcular_desviacion_estandar(datos):
 
 # 1D Conversión de Temperaturas
 def celsius_a_fahrenheit(grados_c):
-        lista_fahrenheit = []
+    lista_fahrenheit = []
     for celsius in grados_c: 
-            fahrenheit = celsius * 9 / 5 + 32
+        fahrenheit = celsius * 9 / 5 + 32
         lista_fahrenheit.append(fahrenheit)
     return lista_fahrenheit
 #1D se crea una lista vacía para guardar resultados, luego recorre cada temperatura en Celsius y se aplica la formula de conversión, 
