@@ -158,3 +158,99 @@ def analisis_de_Consistencia(reporte):
             "Inconsistente": mas_inconsistente
       }
     #para que salca el analisis de consitencia hay que llamarlo con mi_reporte = generar_reporte(estudiantes) #analisis_de_Consistencia(mi_reporte)
+
+def mostrar_menu():
+    print("1. Generar Reporte Completo")
+    print("2. Mostrar Conteo por Estado")
+    print("3. Filtrar Estudiantes por Estado")
+    print("4. Buscar Estudiante por Nombre")
+    print("5. Buscar por Rango de Promedio")
+    print("6. Análisis de Consistencia")
+    print("7. Mostrar Todos los Estudiantes")
+    print("8. Salir")
+
+def mostrar_reporte_completo(reporte):
+    print("\n REPORTE COMPLETO")
+    print(f"{'NOMBRE':<12} | {'PROMEDIO':<9} | {'ESTADO':<12} | {'MÁX':<5} | {'MÍN':<5} | {'RANGO':<6}")
+    for est in reporte:
+        print(f"{est['nombre']:<12} | {est['promedio']:<9.2f} | {est['estado']:<12} | {est['nota_max']:<5.1f} | {est['nota_min']:<5.1f} | {est['rango']:<6.2f}")
+
+def mostrar_todos_estudiantes(estudiantes):
+    print("\n LISTA COMPLETA DE ESTUDIANTES")
+    print(f"{'NOMBRE':<12} | {'NOTAS'}")
+    for est in estudiantes:
+        notas_str = ", ".join([f"{n:.1f}" for n in est["notas"]])
+        print(f"{est['nombre']:<12} | {notas_str}")
+
+# PROGRAMA PRINCIPAL
+def main():
+    reporte = None
+    
+    while True:
+        mostrar_menu()
+        opcion = input("Selecciona una opción (1-8): ").strip()
+        
+        if opcion == "1":
+            reporte = generar_reporte(estudiantes)
+            mostrar_reporte_completo(reporte)
+            
+        elif opcion == "2":
+            if reporte is None:
+                reporte = generar_reporte(estudiantes)
+            conteo = contar_por_estado(reporte)
+            print("\n CONTEO POR ESTADO:")
+            for estado, cantidad in conteo.items():
+                print(f"{estado:<12}: {cantidad:>2}")
+                
+        elif opcion == "3":
+            if reporte is None:
+                reporte = generar_reporte(estudiantes)
+            estado = input("\nEstado (Destacado/Aprobado/Suficiente/Reprobado): ").strip().capitalize()
+            filtrados = filtrar_por_estado(reporte, estado)
+            if filtrados:
+                print(f"\n {len(filtrados)} estudiantes '{estado}':")
+                for est in filtrados:
+                    print(f"  • {est['nombre']} ({est['promedio']:.2f})")
+            else:
+                print(" No encontrados.")
+                
+        elif opcion == "4":
+            if reporte is None:
+                reporte = generar_reporte(estudiantes)
+            estudiante = buscar_estudiante(reporte)
+            if estudiante:
+                print(f"\n  {estudiante['nombre']}: {estudiante['promedio']:.2f} - {estudiante['estado']}")
+            else:
+                print("\n No encontrado.")
+                
+        elif opcion == "5":
+            if reporte is None:
+                reporte = generar_reporte(estudiantes)
+            try:
+                min_prom = float(input("Promedio mínimo: "))
+                max_prom = float(input("Promedio máximo: "))
+                filtrados = buscar_por_rango_promedio(reporte, min_prom, max_prom)
+                print(f"\n {len(filtrados)} en rango {min_prom}-{max_prom}:")
+                for est in filtrados:
+                    print(f"  • {est['nombre']} ({est['promedio']:.2f})")
+            except:
+                print(" Números inválidos.")
+                
+        elif opcion == "6":
+            if reporte is None:
+                reporte = generar_reporte(estudiantes)
+            analisis_de_Consistencia(reporte)
+            
+        elif opcion == "7":
+            mostrar_todos_estudiantes(estudiantes)
+            
+        elif opcion == "8":
+            print("\n ¡Hasta luego!")
+            break
+        else:
+            print("\n opción inválida.")
+        
+        input("\n[Enter] para continuar...")
+
+if __name__ == "__main__":
+    main()
