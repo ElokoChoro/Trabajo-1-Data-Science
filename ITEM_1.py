@@ -154,7 +154,72 @@ def celsius_a_fahrenheit(grados_c):
         break
     else:
         print("por favor ingre una de las opciones dadas 1 o 2")
-    
+def menu_principal():
+    while True:
+        print("1. Funciones Basicas")
+        print("2. Bubble Sort")
+        print("3. Mediana")
+        print("4. Desviacion Estandar")
+        print("5. Celsius a Fahrenheit")
+        print("6. Reporte Estadistico Integrado")
+        print("7. Salir")
+        opcion = input("Opcion: ")
+        
+        if opcion == "1":
+            datos = [10, 20, 30, 40, 50]
+            print("Suma:", calcular_suma(datos))
+            print("Largo:", calcular_largo(datos))
+            print("Promedio:", calcular_promedio(datos))
+            print("Minimo:", calcular_minimo(datos))
+            print("Maximo:", calcular_maximo(datos))
+            
+        elif opcion == "2":
+            datos = [64, 34, 25, 12, 22, 11, 90]
+            print("Original:", datos)
+            print("Ascendente:", bubble_sort(datos))
+            print("Descendente:", bubble_sort(datos, True))
+            
+        elif opcion == "3":
+            datos = [1, 3, 3, 6, 7, 8, 9]
+            print("Mediana:", calcular_mediana(datos))
+            
+        elif opcion == "4":
+            datos = [2, 4, 4, 4, 5, 5, 7, 9]
+            print("Desviacion Estandar:", calcular_desviacion_estandar(datos))
+            
+        elif opcion == "5":
+            celsius = [0, 100, 37]
+            print("Celsius:", celsius)
+            print("Fahrenheit:", celsius_a_fahrenheit(celsius))
+            
+        elif opcion == "6":
+            ciudades = [
+                {"ciudad": "Santiago", "temperaturas": [30.2, 28.5, 25.1, 18.3, 12.7, 9.5, 8.8, 10.1, 14.6, 19.3, 24.8, 28.9]},
+                {"ciudad": "Valparaiso", "temperaturas": [22.1, 21.8, 20.5, 17.2, 14.3, 12.1, 11.5, 12.0, 13.8, 16.5, 19.2, 21.0]},
+                {"ciudad": "Concepcion", "temperaturas": [20.5, 19.8, 17.2, 13.5, 10.8, 8.5, 7.9, 9.2, 11.5, 14.8, 17.5, 19.8]},
+                {"ciudad": "Temuco", "temperaturas": [22.3, 21.5, 18.0, 13.2, 9.5, 7.0, 6.5, 8.0, 10.5, 14.0, 17.8, 20.5]},
+                {"ciudad": "Punta Arenas", "temperaturas": [14.2, 13.5, 11.0, 7.5, 4.2, 2.0, 1.5, 3.0, 6.5, 9.8, 12.0, 13.8]}
+            ]
+            
+            for ciudad_data in ciudades:
+                nombre = ciudad_data["ciudad"]
+                temps = ciudad_data["temperaturas"]
+                largo = calcular_largo(temps)
+                suma = calcular_suma(temps)
+                promedio = calcular_promedio(temps)
+                minimo = calcular_minimo(temps)
+                maximo = calcular_maximo(temps)
+                print(f"{nombre}: L={largo} S={suma:.1f} P={promedio:.1f} Min={minimo} Max={maximo}")
+                
+        elif opcion == "7":
+            print("Saliendo")
+            break
+        else:
+            print("Opcion invalida")
+        input("Enter para continuar...")
+
+# EJECUTAR MENU
+menu_principal()   
 
 
 
