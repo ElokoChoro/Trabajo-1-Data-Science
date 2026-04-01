@@ -67,7 +67,7 @@ notas_en_una_lista = aplanar_notas(lista_de_estudiantes)
 frecuencia_de_notas = contar_frecuencias(notas_en_una_lista)
 la_moda_calculada = encontrar_moda(frecuencia_de_notas)
 
-3B
+#3B
 def generar_histograma(frecuencias, ancho_max=25):
     """Imprime histograma horizontal con barras de X."""
     if not frecuencias:
@@ -89,7 +89,7 @@ def generar_histograma(frecuencias, ancho_max=25):
         #.ljust es un justificador hacia la izquierda
         print(f"Nota {str(categoria).ljust(5)} | {barra} ({cantidad})")
 
-3C
+#3C
 def clasificar_en_tramos(datos, tramos):
     """
     tramos = {"1.0-3.9": (1.0, 3.9), "4.0-5.9": (4.0, 5.9), ...}
@@ -263,7 +263,7 @@ def diversidad_lexica(texto_limpio):
     print(f"\nDiversidad léxica: {total_unicas} únicas / {total} total = {ratio:.2f}")
     return ratio
 
-3E)
+#3E)
 
 def calcular_bigramas(texto_limpio):
     palabras = []
